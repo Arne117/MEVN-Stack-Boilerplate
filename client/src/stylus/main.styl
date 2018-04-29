@@ -1,0 +1,50 @@
+$blueBlack = #021c1e
+$darkBlue = #004445
+$darkGreen = #2c7873
+$green = #6fb98f
+$lightGreen = #12c998
+
+// external stylesheets
+@import '~bootstrap/dist/css/bootstrap.min.css'
+
+// page styles
+@import './effects'
+
+
+html {
+  background-color $blueBlack
+
+  h1, h2 {
+    font-weight normal
+    color $blueBlack
+  }
+
+  ul {
+    list-style-type none
+    padding 0
+  }
+
+  li {
+    display inline-block
+    margin 0 10px
+  }
+
+  a {
+    color $green
+  }
+}
+
+// reset some bootstrap
+*:focus {
+  outline none!important
+  box-shadow none!important
+}
+
+// VueSweetalert2 styling
+.swal2-confirm {
+  background-color #3085d6!important
+}
+
+.swal2-cancel {
+  background-color #d33!important
+}

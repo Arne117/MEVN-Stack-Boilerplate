@@ -1,0 +1,14 @@
+html
+  head
+    title A/B Test Check
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js")
+  body
+    .container
+      h1 A/B Test Check
+      .row
+        .col.m3
+          label(for='url') Geben sie die URL der Webseite ein
+          input.url(type='url' name='url' placeholder='https://www.google.de' required v-on:keydown.enter='callMethod')
+          .btn(@click.prevent='callMethod') Los
+        .col.m3
