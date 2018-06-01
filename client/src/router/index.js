@@ -9,6 +9,11 @@ import Home from '@/components/Home'
 
 import VuexComponent from '@/components/vuex/Index'
 
+import Hue from '@/components/hue/Hue'
+import Rooms from '@/components/hue/Rooms'
+import Room from '@/components/hue/Room'
+import Lights from '@/components/hue/Lights'
+
 let loggedIn = false
 function checkLoginState (to, from, next) {
   if (loggedIn) next({name: 'Name'})
@@ -34,6 +39,31 @@ const router = new Router({
       path: '/vuex',
       component: VuexComponent,
       name: 'VuexComponent'
+    },
+    {
+      path: '/hue',
+      component: Hue,
+      name: 'Hue',
+      children: [
+        {
+          path: 'rooms',
+          component: Rooms,
+          name: 'Rooms',
+          children: [
+            {
+              path: ':id',
+              component: Room,
+              name: 'Room',
+              props: true
+            }
+          ]
+        },
+        {
+          path: 'lights',
+          component: Lights,
+          name: 'Lights'
+        }
+      ]
     },
     {
       path: '/:id/edit',

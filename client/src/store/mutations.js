@@ -1,6 +1,5 @@
 export default {
-  setSearchValue: (state, val) => {
-    console.log('setSearchValue')
-    state.searchValue = val
+  setBridgeIP: (state, ip) => {
+    state.searchValue = ip
   }
 }

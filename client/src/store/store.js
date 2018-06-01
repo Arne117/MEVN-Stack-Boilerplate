@@ -12,7 +12,7 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   state: {
-    searchValue: 'default'
+    bridgeIP: '192.168.2.120'
   },
   getters,
   // sync tasks

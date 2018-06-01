@@ -11,11 +11,13 @@
             router-link.Header-item( :to="{ name: 'Posts' }" tag='a' active-class='active') Post
           li.py-2
             router-link.Header-item( :to="{ name: 'VuexComponent' }" tag='a' active-class='active') Vuex
+          li.py-2
+            router-link.Header-item( :to="{ name: 'Hue' }" tag='a' active-class='active') Hue
 </template>
 
 <script>
 export default {
-
+  name: 'Header'
 }
 </script>
 

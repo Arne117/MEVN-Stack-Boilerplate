@@ -1,5 +1,5 @@
 export default {
-  getSearchValue: state => {
-    return state.searchValue
+  getBrideIP: state => {
+    return state.bridgeIP
   }
 }
