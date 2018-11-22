@@ -14,6 +14,12 @@ import Rooms from '@/components/hue/Rooms'
 import Room from '@/components/hue/Room'
 import Lights from '@/components/hue/Lights'
 
+import Surveys from '@/components/survey/Surveys'
+import ListSurveys from '@/components/survey/ListSurveys'
+import CreateSurvey from '@/components/survey/CreateSurvey'
+import EditSurvey from '@/components/survey/EditSurvey'
+import EvaluateSurvey from '@/components/survey/EvaluateSurvey'
+
 let loggedIn = false
 function checkLoginState (to, from, next) {
   if (loggedIn) next({name: 'Name'})
@@ -39,6 +45,32 @@ const router = new Router({
       path: '/vuex',
       component: VuexComponent,
       name: 'VuexComponent'
+    },
+    {
+      path: '/surveys',
+      component: Surveys,
+      children: [
+        {
+          path: '',
+          component: ListSurveys,
+          name: 'ListSurveys'
+        },
+        {
+          path: 'create',
+          component: CreateSurvey,
+          name: 'CreateSurvey'
+        },
+        {
+          path: ':id/edit',
+          component: EditSurvey,
+          name: 'EditSurvey'
+        },
+        {
+          path: ':id/evaluate',
+          component: EvaluateSurvey,
+          name: 'EvaluateSurvey'
+        }
+      ]
     },
     {
       path: '/hue',

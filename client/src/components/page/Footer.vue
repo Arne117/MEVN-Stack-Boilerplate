@@ -9,24 +9,18 @@
           h5.Footer-headline Features
           ul.text-small.Footer-list
             li
-              a.Footer-item(href='#') Cool stuff
+              a.Footer-item(href='#') Feature
             li
-              a.Footer-item(href='#') Random feature
+              a.Footer-item(href='#') Another Feature
             li
-              a.Footer-item(href='#') Team feature
-            li
-              a.Footer-item(href='#') Stuff for developers
-            li
-              a.Footer-item(href='#') Another one
-            li
-              a.Footer-item(href='#') Last time
+              a.Footer-item(href='#') Final Feature
         .col-6.col-md.Footer-block
           h5.Footer-headline Resources
           ul.text-small.Footer-list
             li
               a.Footer-item(href='#') Resource
             li
-              a.Footer-item(href='#') Resource name
+              a.Footer-item(href='#') Another resource
             li
               a.Footer-item(href='#') Another resource
             li
