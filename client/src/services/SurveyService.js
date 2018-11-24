@@ -6,5 +6,8 @@ export default {
   },
   getSurvey (params) {
     return Api().get(`surveys/${params.id}`)
+  },
+  getSurveyResults (params) {
+    return Api().get(`surveys/${params.id}/`)
   }
 }

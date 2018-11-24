@@ -4,8 +4,26 @@
 </template>
 
 <script>
-export default {
+import SurveyService from '@/services/SurveyService'
 
+export default {
+  data () {
+    return {
+      survey: {},
+      confirmLeave: false
+    }
+  },
+  mounted () {
+    this.getSurveyResults()
+  },
+  methods: {
+    async getSurvey () {
+      const response = await SurveyService.getSurveyResults({
+        id: this.$route.params.id
+      })
+      this.surveys = response.data
+    }
+  }
 }
 </script>
 
