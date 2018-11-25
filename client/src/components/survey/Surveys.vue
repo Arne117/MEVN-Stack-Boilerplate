@@ -1,7 +1,7 @@
 <template lang='pug'>
   .Survey.p-md-5.m-md-3
     .Survey-center
-      h1 Umfragen
+      h1 Surveys
       transition(name='fade' mode='out-in')
         router-view
 </template>

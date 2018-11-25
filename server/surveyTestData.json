@@ -1,6 +1,5 @@
-module.exports = [{
+[{
   title: 'One',
-  id: '1',
   questions: [
     {
       type: 'checkbox',
@@ -26,7 +25,6 @@ module.exports = [{
 },
 {
   title: 'Two',
-  id: '2',
   'elements': [
     {
       'type': 'barrating',
@@ -39,7 +37,6 @@ module.exports = [{
 },
 {
   title: 'Software developer survey.',
-  id: '3',
   pages: [
     {
       title: 'What operating system do you use?',

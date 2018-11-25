@@ -2,20 +2,23 @@ require('dotenv').config()
 
 const express = require('express')
 const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
+const helmet = require('helmet')
 const cors = require('cors')
 
 const app = express()
+app.use(helmet())
 app.use(bodyParser.json())
+app.use(cookieParser())
 app.use(cors())
 
-const logger = require('../helpers/logger')
-const testjson = require('./surveyTestData')
+const logger = require('./helpers/logger')
+const apiV1 = require('./api/v1/')
 
 const port = process.env.PORT || 8081
 
-app.get('/surveys', (req, res) => {
-  res.send(testjson)
-})
+app.use('/api/v1', apiV1)
+app.use(express.static('public'))
 
 app.use((err, req, res, next) => {
   logger.error(err.stack)

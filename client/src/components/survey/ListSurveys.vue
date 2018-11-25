@@ -1,8 +1,8 @@
 <template lang='pug'>
   .p-lg-1
-    router-link.Button(:to='{ name: "CreateSurvey" }' tag='li')
-      span Create survey
     h3 List of surveys
+    router-link.Button(:to='{ name: "CreateSurvey" }' tag='button')
+      span Create survey
     ul.SurveyList
         li.SurveyList-item(
           v-if='surveys.length > 0'
@@ -10,10 +10,11 @@
           @click=''
           )
           | {{ survey.title }}
-          router-link.SurveyList-link(:to='{ name: "EvaluateSurvey", params: {id: survey.id} }' tag='a')
+          router-link.SurveyList-link(:to='{ name: "EvaluateSurvey", params: {id: survey._id} }' tag='a')
             span Evaluate
-          router-link.SurveyList-link(:to='{ name: "EditSurvey", params: {id: survey.id} }' tag='a')
+          router-link.SurveyList-link(:to='{ name: "EditSurvey", params: {id: survey._id} }' tag='a')
             span Edit
+          a.SurveyList-link(@click='deleteSurvey(survey._id)') Delete
         .Error(v-else) There was an Error
 </template>
 
@@ -33,6 +34,33 @@ export default {
     async getSurveys () {
       const response = await SurveyService.getSurveys()
       this.surveys = response.data
+    },
+    async deleteSurvey (id) {
+      this.$swal({
+        title: 'Are you sure you want to delete the survey?',
+        text: 'All data will be gone',
+        type: 'warning',
+        showCancelButton: true,
+        showCloseButton: true,
+        confirmButtonText: 'Yes'
+      }).then(async res => {
+        if (res.value) {
+          const response = await SurveyService.deleteSurvey(id)
+          if (response.status === 204) {
+            this.$swal({
+              type: 'success',
+              title: 'Deleted successfully',
+              confirmButtonText: 'Ok'
+            }).then(res => { this.$router.go(0) })
+          } else {
+            this.$swal({
+              type: 'error',
+              title: 'There was an error',
+              confirmButtonText: 'Ok'
+            }).then(res => { this.$router.go(0) })
+          }
+        }
+      })
     }
   }
 }

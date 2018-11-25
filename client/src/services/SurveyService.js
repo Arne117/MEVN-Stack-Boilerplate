@@ -9,5 +9,11 @@ export default {
   },
   getSurveyResults (params) {
     return Api().get(`surveys/${params.id}/`)
+  },
+  addSurvey (params) {
+    return Api().post('surveys', params)
+  },
+  deleteSurvey (id) {
+    return Api().delete(`surveys/${id}`)
   }
 }

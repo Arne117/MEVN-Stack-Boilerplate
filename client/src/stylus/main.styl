@@ -35,6 +35,15 @@ html {
   box-shadow none!important
 }
 
+a:not([href]):not([tabindex]) {
+  color $green
+  cursor pointer
+
+  &:hover {
+    text-decoration underline
+  }
+}
+
 // VueSweetalert2 styling
 .swal2-confirm {
   background-color #3085d6!important

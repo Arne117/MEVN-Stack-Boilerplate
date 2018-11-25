@@ -9,8 +9,8 @@
 const mongoose = require('mongoose')
 mongoose.Promise = global.Promise
 const db = mongoose.createConnection(
-  `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}:${process.env.DB_PORT}/surveys?authSource=admin`,
-  { useMongoClient: true }
+  `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}:${process.env.DB_PORT}/Bachelorarbeit?authSource=admin`,
+  { useNewUrlParser: true }
 )
 const Schema = mongoose.Schema
 
@@ -21,7 +21,7 @@ const SurveySchema = new Schema(
   },
   {
     _id: true,
-    collection: 'banners',
+    collection: 'surveys',
     timestamps: true
   }
 )

@@ -13,7 +13,7 @@ import axios from 'axios'
 
 export default () => {
   let instance = axios.create({
-    baseURL: process.env.NODE_ENV === 'production' ? 'https://api.domain.com' : '//localhost:8081'
+    baseURL: process.env.NODE_ENV === 'production' ? 'https://www.domain.com/api/v1' : '//localhost:8081/api/v1'
     // headers: {'X-Requested-With': 'XMLHttpRequest'}
   })
 
