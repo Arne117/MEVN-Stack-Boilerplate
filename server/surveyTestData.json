@@ -1,111 +1,57 @@
 [{
-  title: 'One',
-  questions: [
-    {
-      type: 'checkbox',
-      name: 'car',
-      title: 'What car are you driving?',
-      isRequired: true,
-      hasNone: true,
-      colCount: 4,
-      choices: [
-        'Ford',
-        'Vauxhall',
-        'Volkswagen',
-        'Nissan',
-        'Audi',
-        'Mercedes-Benz',
-        'BMW',
-        'Peugeot',
-        'Toyota',
-        'Citroen'
-      ]
-    }
-  ]
-},
-{
-  title: 'Two',
-  'elements': [
-    {
-      'type': 'barrating',
-      'name': 'barrating1',
-      'ratingTheme': 'fontawesome-stars',
-      'title': "Please rate the movie you've just watched",
-      'choices': ['1', '2', '3', '4', '5']
-    }
-  ]
-},
-{
-  title: 'Software developer survey.',
-  pages: [
-    {
-      title: 'What operating system do you use?',
-      questions: [
+  "locale": "de",
+  "title": "Titel der ersten Umfrage",
+  "pages": [{
+      "name": "Seite 1",
+      "title": "Titel der Seite 1",
+      "position": {
+        "x": 25,
+        "y": 25
+      },
+      "elements": [
         {
-          type: 'checkbox',
-          name: 'opSystem',
-          title: 'OS',
-          hasOther: true,
-          isRequired: true,
-          choices: ['Windows', 'Linux', 'Macintosh OSX']
-        }
-      ]
-    }, {
-      title: 'What language(s) are you currently using?',
-      questions: [
-        {
-          type: 'checkbox',
-          name: 'langs',
-          title: 'Plese select from the list',
-          colCount: 4,
-          isRequired: true,
-          choices: [
-            'Javascript',
-            'Java',
-            'Python',
-            'CSS',
-            'PHP',
-            'Ruby',
-            'C++',
-            'C',
-            'Shell',
-            'C#',
-            'Objective-C',
-            'R',
-            'VimL',
-            'Go',
-            'Perl',
-            'CoffeeScript',
-            'TeX',
-            'Swift',
-            'Scala',
-            'Emacs List',
-            'Haskell',
-            'Lua',
-            'Clojure',
-            'Matlab',
-            'Arduino',
-            'Makefile',
-            'Groovy',
-            'Puppet',
-            'Rust',
-            'PowerShell'
+          "questionsID": "5c0664b6cb4344e3e664a939",
+          "type": "checkbox",
+          "name": "Frage zur Wahl",
+          "title": {
+            "de": "Welche Partei würden sie wählen"
+          },
+          "isRequired": true,
+          "choices": [{
+              "answerID": "5c0664b6d251ea812b6052a6",
+              "value": "item1",
+              "text": {
+                "de": "SPD"
+              }
+            },
+            {
+              "answerID": "5c0664b6e9b01e04682d7643",
+              "value": "item2",
+              "text": {
+                "de": "CDU"
+              }
+            }
           ]
         }
       ]
-    }, {
-      title: 'Please enter your name and e-mail',
-      questions: [
-        {
-          type: 'text',
-          name: 'name',
-          title: 'Name:'
-        }, {
-          type: 'text',
-          name: 'email',
-          title: 'Your e-mail'
-        }
-      ]
+    },
+    {
+      "name": "Seite 2",
+      "title": "Seite 2",
+      "position": {
+        "x": 375,
+        "y": 25
+      },
+      "elements": []
+    },
+    {
+      "name": "Seite 3",
+      "title": "Seite 3",
+      "position": {
+        "x": 725,
+        "y": 25
+      },
+      "elements": []
     }
   ]
 }]

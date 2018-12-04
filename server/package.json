@@ -1,14 +1,14 @@
 {
-  "name": "bachelorarbeit",
+  "name": "Bachelor-thesis-NodeJS-survey-API",
   "version": "0.0.1",
-  "description": "Bachelorarbeit Prototype Server",
+  "description": "Bachelor thesis NodeJS server.",
   "main": "index.js",
   "scripts": {
     "start": "./node_modules/nodemon/bin/nodemon.js app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Arne Rolf",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.18.1",
@@ -21,5 +21,14 @@
     "morgan": "^1.8.2",
     "nodemon": "^1.12.1",
     "winston": "^3.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Arne117/MEVN-Stack-Boilerplate"
+  },
+  "bugs": "https://github.com/Arne117/MEVN-Stack-Boilerplate/issues",
+  "engines": {
+    "node": ">= 8.9.0",
+    "npm": ">= 3.0.0"
   }
 }

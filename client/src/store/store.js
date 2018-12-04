@@ -6,14 +6,12 @@ import mutations from './mutations'
 import actions from './actions'
 
 import counter from './modules/counter'
-// import moreLogic from './modules/moreLogic/'
+import survey from './modules/survey/'
 
 Vue.use(Vuex)
 
 export const store = new Vuex.Store({
-  state: {
-    bridgeIP: '192.168.2.120'
-  },
+  state: {},
   getters,
   // sync tasks
   mutations,
@@ -21,7 +19,7 @@ export const store = new Vuex.Store({
   actions,
   // exported store logic goes here [dispatch]
   modules: {
-    counter
-    // moreLogic
+    counter,
+    survey
   }
 })

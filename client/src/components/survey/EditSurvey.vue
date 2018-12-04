@@ -1,10 +1,14 @@
 <template lang='pug'>
-  .Survey-create
+  .Survey-edit
     p Editieren
+    SurveyEditor
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+
 import SurveyService from '@/services/SurveyService'
+import SurveyEditor from './SurveyEditor'
 
 export default {
   beforeRouteLeave (to, from, next) {
@@ -14,11 +18,14 @@ export default {
         text: 'All changes will be lost',
         type: 'warning',
         showCancelButton: true,
-        confirmButtonText: 'Yes it is ok'
-      }).then((res) => {
+        confirmButtonText: 'Yes it`s ok'
+      }).then(res => {
         res.value === true ? next() : next(false)
       })
     } else next()
+  },
+  components: {
+    SurveyEditor
   },
   data () {
     return {
@@ -30,11 +37,14 @@ export default {
     this.getSurvey()
   },
   methods: {
+    ...mapMutations([
+      'setSurveyData'
+    ]),
     async getSurvey () {
       const response = await SurveyService.getSurvey({
         id: this.$route.params.id
       })
-      this.surveys = response.data
+      this.setSurveyData(response.data)
     },
     async updateSurvey () {
       await SurveyService.updateSurvey({
@@ -44,10 +54,10 @@ export default {
       this.confirmLeave = false
       this.$swal(
         'Great!',
-        `Your Survey has been updated!`,
+        'Your Survey has been updated!',
         'success'
       )
-      this.$router.push({ name: 'Posts' })
+      this.$router.push({ name: 'Surveys' })
     }
   }
 }

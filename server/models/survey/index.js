@@ -21,7 +21,7 @@ const SurveySchema = new Schema(
   },
   {
     _id: true,
-    collection: 'surveys',
+    collection: 'Surveys',
     timestamps: true
   }
 )
