@@ -17,7 +17,16 @@ const Schema = mongoose.Schema
 const SurveySchema = new Schema(
   {
     title: { type: String, required: true },
-    surveyData: { type: Object, required: true, default: {} }
+    locale: { type: String, default: 'en' },
+    pages: {
+      type: Array,
+      required: true,
+      default: [{
+        name: 'Page 1',
+        title: 'Titel of page 1',
+        position: { x: 25, y: 25 }
+      }]
+    }
   },
   {
     _id: true,

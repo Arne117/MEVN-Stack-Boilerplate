@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import VueSweetalert2 from 'vue-sweetalert2'
 import VueDraggableResizable from 'vue-draggable-resizable'
+import TreeView from 'vue-json-tree-view'
 
 import App from './App'
 import router from './router'
@@ -10,6 +11,9 @@ import { store } from './store/store'
 
 // Vue plugins
 Vue.use(VueSweetalert2)
+Vue.use(TreeView)
+
+// Vue components
 Vue.component('vue-drag-res', VueDraggableResizable)
 
 // Vue config

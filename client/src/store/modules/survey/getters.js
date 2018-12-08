@@ -1,5 +1,5 @@
 export default {
-  getSurveyData: state => {
-    return state.surveyData
+  getSurvey: state => {
+    return state.survey
   }
 }

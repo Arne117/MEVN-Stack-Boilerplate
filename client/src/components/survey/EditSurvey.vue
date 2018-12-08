@@ -1,6 +1,6 @@
 <template lang='pug'>
   .Survey-edit
-    p Editieren
+    p Edit
     SurveyEditor
 </template>
 
@@ -28,36 +28,20 @@ export default {
     SurveyEditor
   },
   data () {
-    return {
-      survey: {},
-      confirmLeave: false
-    }
+    return {}
   },
   mounted () {
     this.getSurvey()
   },
   methods: {
     ...mapMutations([
-      'setSurveyData'
+      'setSurvey'
     ]),
     async getSurvey () {
       const response = await SurveyService.getSurvey({
         id: this.$route.params.id
       })
-      this.setSurveyData(response.data)
-    },
-    async updateSurvey () {
-      await SurveyService.updateSurvey({
-        id: this.$route.params.id,
-        data: this.survey
-      })
-      this.confirmLeave = false
-      this.$swal(
-        'Great!',
-        'Your Survey has been updated!',
-        'success'
-      )
-      this.$router.push({ name: 'Surveys' })
+      this.setSurvey(response.data)
     }
   }
 }

@@ -1,5 +1,5 @@
 export default {
-  setSurveyData: (state, survey) => {
-    state.surveyData = survey
+  setSurvey: (state, survey) => {
+    state.survey = survey
   }
 }

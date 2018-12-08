@@ -15,5 +15,8 @@ export default {
   },
   deleteSurvey (id) {
     return Api().delete(`surveys/${id}`)
+  },
+  updateSurvey (params) {
+    return Api().patch(`surveys/${params.id}`, params)
   }
 }

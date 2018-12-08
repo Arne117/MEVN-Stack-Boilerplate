@@ -1,26 +1,33 @@
 <template lang='pug'>
   .SurveyEditor
-    select(v-model='activeTab')
-      option(value='VisualEditor') Visual editor
-      option(value='ViewJson') View JSON
-    transition(name='fade' mode='out-in')
-      keep-alive
-        component(:is='activeTab')
+    .SurveyEditor-container
+      .SurveyEditor-header
+        select(v-model='activeTab')
+          option(value='VisualEditor') Visual editor
+          option(value='JsonView') View JSON
+        button.Button(@click='updateSurvey') Save
+      .SurveyEditor-body
+        transition(name='fade' mode='out-in')
+          component(:is='activeTab')
 </template>
 
 <script>
-import * as SurveyVue from 'survey-vue'
+import { mapGetters } from 'vuex'
 
 import SurveyService from '@/services/SurveyService'
 import VisualEditor from './VisualEditor/'
-
-let Survey = SurveyVue.Survey
+import JsonView from './VisualEditor/JsonView'
 
 export default {
   name: 'survey-editor',
   components: {
-    Survey,
-    VisualEditor
+    VisualEditor,
+    JsonView
+  },
+  computed: {
+    ...mapGetters({
+      survey: 'getSurvey'
+    })
   },
   data () {
     return {
@@ -38,7 +45,6 @@ export default {
       const response = await SurveyService.addSurvey({
         survey: this.survey
       })
-      console.log(response)
       if (response.status === 201) {
         this.$swal({
           title: 'Great!',
@@ -55,10 +61,42 @@ export default {
           confirmButtonText: 'ok'
         })
       }
+    },
+    async updateSurvey () {
+      const response = await SurveyService.updateSurvey({
+        id: this.$route.params.id,
+        surveyData: this.surveyData
+      })
+      console.log(response)
+      if (response.status === 200) {
+        this.$swal(
+          'Great!',
+          'Your Survey has been updated!',
+          'success'
+        )
+      }
     }
   }
 }
 </script>
 
 <style lang='stylus' scoped>
+  .SurveyEditor {
+
+    &-container {
+
+    }
+
+    &-header {
+      display flex
+      flex-direction row
+      justify-content space-between
+      margin-bottom .5em
+    }
+
+    &-body {
+
+    }
+  }
+
 </style>

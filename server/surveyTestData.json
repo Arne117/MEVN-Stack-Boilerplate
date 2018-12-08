@@ -32,6 +32,28 @@
               }
             }
           ]
+        },
+        {
+         "type": "text",
+         "name": "question2",
+         "title": {
+           "de": "Geben sie ihren Namen ein"
+         }
+        },
+        {
+          "type": "rating",
+          "name": "NPS Frage",
+          "title": {
+            "de": "Wie sehr würden Sie uns empfehlen?"
+          },
+          "isRequired": true,
+          "rateMax": 10,
+          "minRateDescription": {
+            "de": "Gar nicht"
+          },
+          "maxRateDescription": {
+            "de": "Sehr"
+          }
         }
       ]
     },
