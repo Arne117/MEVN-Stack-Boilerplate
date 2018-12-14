@@ -14,7 +14,6 @@
         @click='setActivePage(i, $event)'
         @activated='onActivate(i)'
         @deactivated="onDeactivate"
-        @resizing='onResize'
         @dragging='onDrag'
         @dragstop='onDragStop'
         drag-handle='.DragHandle'
@@ -100,7 +99,6 @@ export default {
       this.activePage = 0
       this.sidebarContent = 'pages'
     },
-    onResize () {},
     onDrag () {},
     onDragStop (x, y) {
       // this.survey.pages[this.activePage].position.x = x
@@ -193,9 +191,6 @@ export default {
 
       .flip-list-move {
         transition transform 0.5s
-      }
-      .no-move {
-        transition transform 0s
       }
     }
   }

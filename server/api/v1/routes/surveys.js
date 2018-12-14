@@ -26,10 +26,13 @@ surveys.route('/')
     })
   })
   .put((req, res, next) => {
-    res.status(405).json({ 'error': { 'message': 'Put to wrong URL with id', 'code': 405 } })
+    res.status(405).json({ 'error': { 'message': 'Not Allowed! Put to URL without id', 'code': 405 } })
+  })
+  .patch((req, res, next) => {
+    res.status(405).json({ 'error': { 'message': 'Not Allowed! Patch to URL without id', 'code': 405 } })
   })
   .delete((req, res, next) => {
-    res.status(400).json({ 'error': { 'message': 'Delete to URL without id', 'code': 400 } })
+    res.status(405).json({ 'error': { 'message': 'Not Allowed! Delete to URL without id', 'code': 400 } })
   })
 
 surveys.route('/:id')
@@ -57,6 +60,48 @@ surveys.route('/:id')
         next(err)
       }
     })
+  })
+  .put((req, res, next) => {
+    let err = {}
+    if (req.params.id !== req.body.id) {
+      err = {
+        'status': 400,
+        'message': 'Request id is not equal to object id'
+      }
+      next(err)
+    } else {
+      for (let key in SurveyModel.schema.paths) {
+        if (!(key in req.body)) {
+          if (SurveyModel.schema.paths[key].isRequired === true) {
+            err = {
+              'status': 400,
+              'message': 'Request is missing the required field : ' + key + '.'
+            }
+          }
+          if (SurveyModel.schema.paths[key].options.default !== undefined) {
+            req.body[key] = SurveyModel.schema.paths[key].options.default
+          }
+        }
+      }
+      if (Object.keys(err).length !== 0) {
+        next(err)
+      } else {
+        if (req.body.__v !== undefined) {
+          delete req.body.__v
+        }
+        if (req.body._id !== undefined) {
+          delete req.body._id
+        }
+        SurveyModel.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, item) => {
+          if (!err) {
+            res.status(200).json(item)
+          } else {
+            err.status = 400
+            next(err)
+          }
+        })
+      }
+    }
   })
   .patch((req, res, next) => {
     res.set('Content-Type', 'application/json')
