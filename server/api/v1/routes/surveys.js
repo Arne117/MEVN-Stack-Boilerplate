@@ -16,9 +16,8 @@ surveys.route('/')
   .post((req, res, next) => {
     const survey = new SurveyModel(req.body)
     survey.save(err => {
-      if (!err) {
-        res.status(201).json(survey)
-      } else {
+      if (!err) res.status(201).json(survey)
+      else {
         err.status = 400
         err.message += ' in fields: ' + Object.getOwnPropertyNames(err.errors)
         next(err)
@@ -38,10 +37,9 @@ surveys.route('/')
 surveys.route('/:id')
   .get((req, res, next) => {
     SurveyModel.findOne({ _id: req.params.id }, (err, item) => {
-      if (!err) {
-        res.status(200).json(item)
-      } else {
-        err.status = 400
+      if (!err) res.status(200).json(item)
+      else {
+        err.status = 404
         err.message = 'Could not find by ID'
         next(err)
       }
@@ -55,7 +53,7 @@ surveys.route('/:id')
     SurveyModel.findOneAndRemove({ _id: req.params.id }, (err, item) => {
       if (!err) res.status(204).end()
       else {
-        err.status = 400
+        err.status = 404
         err.message = 'Could not find and delete by this ID'
         next(err)
       }
@@ -83,19 +81,13 @@ surveys.route('/:id')
           }
         }
       }
-      if (Object.keys(err).length !== 0) {
-        next(err)
-      } else {
-        if (req.body.__v !== undefined) {
-          delete req.body.__v
-        }
-        if (req.body._id !== undefined) {
-          delete req.body._id
-        }
+      if (Object.keys(err).length !== 0) next(err)
+      else {
+        if (req.body.__v !== undefined) delete req.body.__v
+        if (req.body._id !== undefined) delete req.body._id
         SurveyModel.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, item) => {
-          if (!err) {
-            res.status(200).json(item)
-          } else {
+          if (!err) res.status(200).json(item)
+          else {
             err.status = 400
             next(err)
           }
@@ -113,16 +105,12 @@ surveys.route('/:id')
       }
       next(err)
     } else {
-      if (req.body.__v !== undefined) {
-        delete req.body.__v
-      }
-      if (req.body._id !== undefined) {
-        delete req.body._id
-      }
+      if (req.body.__v !== undefined) delete req.body.__v
+      if (req.body._id !== undefined) delete req.body._id
       SurveyModel.findOneAndUpdate({ _id: req.params.id }, req.body, { upsert: true, new: true }, (err, item) => {
         if (!err) res.status(200).json(item)
         else {
-          err.status = 400
+          err.status = 404
           next(err)
         }
       })

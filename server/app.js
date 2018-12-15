@@ -22,17 +22,14 @@ app.use(express.static('public'))
 
 app.use((err, req, res, next) => {
   logger.error(err.stack)
-  res.status(500).render('error', { errorCode: 500, error: 'Something went wrong' })
+  res.status(500).json({ 'error': { 'message': 'Something went wrong!', 'code': 500 } })
 })
 
 app.use((req, res, next) => {
-  res.status(404).render('error', { errorCode: 404, error: 'Page missing' })
+  res.status(404).json({ 'error': { 'message': 'Page missing!', 'code': 404 } })
 })
 
 app.listen(port, err => {
-  if (err !== undefined) {
-    logger.error(`Error on startup http: ${err}`)
-  } else {
-    logger.info(`Listening http on port: ${port}`)
-  }
+  if (err !== undefined) logger.error(`Error on startup http: ${err}`)
+  else logger.info(`Listening http on port: ${port}`)
 })
