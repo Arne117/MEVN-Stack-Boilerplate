@@ -1,6 +1,6 @@
 <template lang='pug'>
   .VisualEditor(v-if='getSurvey')
-    .EditArea
+    .EditArea(@click='setActivePage(null, $event)')
       vue-drag-res.Page(
         v-for='page, i in getSurvey.pages'
         :parent='true'
@@ -11,14 +11,13 @@
         :minh='400'
         :grid='[12.5, 12.5]'
         :key='page.name'
-        @click='setActivePage(i, $event)'
         @activated='onActivate(i)'
         @deactivated="onDeactivate"
         @dragging='onDrag'
         @dragstop='onDragStop'
         drag-handle='.DragHandle'
       )
-        .Page-container
+        .Page-container(@click='setActivePage(i, $event)')
           .Page-header
             i.DragHandle.fa.fa-arrows(aria-hidden='true')
             h4 {{ page.title }}
@@ -99,14 +98,17 @@ export default {
       this.activePage = 0
       this.sidebarContent = 'pages'
     },
-    onDrag () {},
+    onDrag (x, y) {},
     onDragStop (x, y) {
       // this.survey.pages[this.activePage].position.x = x
       // this.survey.pages[this.activePage].position.y = y
       // console.log(this.survey)
       // this.setSurvey(this.survey)
     },
-    setActivePage (activePage) {
+    setActivePage (activePage, $event) {
+      document.querySelectorAll('.Page').forEach(el => el.classList.remove('active'))
+      if ($event.target.classList.contains('EditArea')) return
+      $event.target.parentNode.classList.add('active')
       this.activePage = activePage
       this.sidebarContent = 'questions'
     },
@@ -144,7 +146,7 @@ export default {
         display flex
         flex-direction column
         padding .5em
-
+        height 100%
       }
 
       &-header {
