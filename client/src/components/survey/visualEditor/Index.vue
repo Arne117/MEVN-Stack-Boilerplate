@@ -40,8 +40,7 @@
                   .QuestionDetails-container
                     .QuestionDetails-header {{ question.type }}
                     .QuestionDetails-body
-                    //- component(:is='question.type')
-                    //- checkbox
+                      component(:is='question.type' v-bind='{ question: question, language: surveyData.locale }')
 
             //- draggable(element='span' v-model='list2' :options='dragOptions' :move='onMove')
             //-   transition-group(name='no' class='list-group' tag='ul')
@@ -56,16 +55,19 @@
           .Sidebar-body(v-if='activeQuestion.title')
             .Sidebar-settings
               label(for='questionTitle') Question title
-              input(v-model='activeQuestion.title[surveyData.locale]' name='questionTitle')
+              input(v-model='activeQuestion.title[surveyData.locale]' id='questionTitle')
               label(for='questionName') Question name
-              input(v-model='activeQuestion.name' name='questionName')
+              input(v-model='activeQuestion.name' id='questionName')
               label(for='questionRequired') Question required
-              input(type='checkbox' v-model='activeQuestion.isRequired')
+              input(type='checkbox' v-model='activeQuestion.isRequired' id='questionRequired')
 
         .Sidebar-questions(v-show='sidebarContent === "questions"')
           .Sidebar-header
-            h5 Questiontypes
+            h5 Page options
           .Sidebar-body
+            label(for='pageTitle') Page title
+            input(v-model='surveyData.pages[activePage].title' name='pageTitle' v-if='activePage')
+            h6 Questiontypes
             draggable.Question-list(
               element='ul'
               v-model='Survey.ElementFactory.Instance.getAllTypes()'
@@ -92,6 +94,9 @@ import { mapMutations } from 'vuex'
 
 import SurveyService from '@/services/SurveyService'
 
+import checkbox from './questionTypes/Checkbox'
+import rating from './questionTypes/Rating'
+
 window.Survey = SurveyVue
 let Survey = SurveyVue.Survey
 Survey.cssType = 'bootstrap'
@@ -100,8 +105,9 @@ export default {
   name: 'visualEditor',
   components: {
     SurveyVue,
-    checkbox: SurveyVue.Checkbox,
-    draggable
+    draggable,
+    checkbox,
+    rating
   },
   data () {
     return {
@@ -151,11 +157,9 @@ export default {
     onQuestionMove () {},
     setPageActive (activePage, $event) {
       console.log('setPageActive')
-      if ($event.target.classList.contains('Question-item')) {
-        this.activePage = activePage
-        this.sidebarContent = 'questionDetails'
-      } else {
-        this.activePage = activePage
+      this.activePage = activePage
+      if ($event.target.classList.contains('Question-item')) this.sidebarContent = 'questionDetails'
+      else {
         this.activeQuestion = {}
         this.sidebarContent = 'questions'
       }
