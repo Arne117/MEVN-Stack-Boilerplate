@@ -8,7 +8,7 @@ export default {
     return Api().get(`surveys/${params.id}`)
   },
   getSurveyResults (params) {
-    return Api().get(`surveys/${params.id}/`)
+    // return Api().get(`surveys/${params.id}/results`)
   },
   addSurvey (params) {
     return Api().post('surveys', params)
@@ -17,6 +17,6 @@ export default {
     return Api().delete(`surveys/${id}`)
   },
   updateSurvey (params) {
-    return Api().patch(`surveys/${params.id}`, params)
+    return Api().put(`surveys/${params._id}`, params)
   }
 }

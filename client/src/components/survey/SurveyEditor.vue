@@ -26,7 +26,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      survey: 'getSurvey'
+      surveyData: 'getSurvey'
     })
   },
   data () {
@@ -34,47 +34,11 @@ export default {
       activeTab: 'VisualEditor'
     }
   },
-  mounted () {
-    // this.editor = new SurveyEditor.SurveyEditor('surveyEditorContainer', editorOptions)
-    // this.editor.saveSurveyFunc = function () {
-    //   console.log((this))
-    // }
-  },
   methods: {
-    async addSurvey () {
-      const response = await SurveyService.addSurvey({
-        survey: this.survey
-      })
-      if (response.status === 201) {
-        this.$swal({
-          title: 'Great!',
-          text: 'Your survey has been added.',
-          type: 'success',
-          confirmButtonText: 'ok'
-        }).then(() => { this.$router.push({ name: 'EditSurvey', params: {id: response.data._id} }) })
-        //
-      } else {
-        this.$swal({
-          title: 'Oh No!',
-          text: 'Something went wrong',
-          type: 'error',
-          confirmButtonText: 'ok'
-        })
-      }
-    },
     async updateSurvey () {
-      const response = await SurveyService.updateSurvey({
-        id: this.$route.params.id,
-        surveyData: this.surveyData
-      })
-      console.log(response)
-      if (response.status === 200) {
-        this.$swal(
-          'Great!',
-          'Your Survey has been updated!',
-          'success'
-        )
-      }
+      const response = await SurveyService.updateSurvey(this.surveyData)
+      if (response.status === 200) this.$swalSuccess({ text: 'Your Survey has been updated!' })
+      else this.$swalError({text: `Statuscode: ${response.status}`})
     }
   }
 }
@@ -83,9 +47,7 @@ export default {
 <style lang='stylus' scoped>
   .SurveyEditor {
 
-    &-container {
-
-    }
+    &-container {}
 
     &-header {
       display flex
@@ -94,9 +56,7 @@ export default {
       margin-bottom .5em
     }
 
-    &-body {
-
-    }
+    &-body {}
   }
 
 </style>

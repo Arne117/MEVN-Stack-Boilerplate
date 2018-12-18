@@ -34,9 +34,9 @@ export default {
     ...mapMutations([
       'setSurvey'
     ]),
-    onChangeData (data) {
-      console.log(data)
-      this.setSurvey(data)
+    onChangeData (surveyData) {
+      console.log(surveyData)
+      this.setSurvey(surveyData)
     }
   }
 }

@@ -17,13 +17,12 @@ const Schema = mongoose.Schema
 const SurveySchema = new Schema(
   {
     title: { type: String, required: true },
-    locale: { type: String, default: 'en' },
+    locale: { type: String, default: 'de' },
     pages: {
       type: Array,
-      required: true,
       default: [{
         name: 'Page 1',
-        title: 'Titel of page 1',
+        title: 'Titel der ersten Seite',
         position: { x: 25, y: 25 }
       }]
     }

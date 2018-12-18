@@ -21,7 +21,7 @@ app.use('/api/v1', apiV1)
 app.use(express.static('public'))
 
 app.use((err, req, res, next) => {
-  logger.error(err.stack)
+  logger.error(err)
   res.status(500).json({ 'error': { 'message': 'Something went wrong!', 'code': 500 } })
 })
 

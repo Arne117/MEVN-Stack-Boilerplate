@@ -1,6 +1,8 @@
 <template lang='pug'>
   .Survey-evaluate
-    p Auswerten
+    p Evaluate
+    div
+      h6 Survey results would show here.
 </template>
 
 <script>
@@ -9,19 +11,19 @@ import SurveyService from '@/services/SurveyService'
 export default {
   data () {
     return {
-      survey: {},
-      confirmLeave: false
+      surveyResults: undefined
     }
   },
   mounted () {
     this.getSurveyResults()
   },
   methods: {
-    async getSurvey () {
+    async getSurveyResults () {
       const response = await SurveyService.getSurveyResults({
         id: this.$route.params.id
       })
-      this.surveys = response.data
+      console.log(response)
+      // this.surveys = response.data
     }
   }
 }

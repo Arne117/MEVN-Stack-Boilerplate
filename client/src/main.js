@@ -16,6 +16,28 @@ Vue.use(TreeView)
 // Vue components
 Vue.component('vue-drag-res', VueDraggableResizable)
 
+// Vue Mixins
+Vue.mixin({
+  methods: {
+    $swalError (opt = {}, callback) {
+      this.$swal({
+        title: opt.title || 'Oh No!',
+        text: `Something went wrong. ${opt.text}`,
+        type: 'error',
+        confirmButtonText: opt.confirmButtonText || 'ok'
+      }).then(callback)
+    },
+    $swalSuccess (opt = {}, callback) {
+      this.$swal({
+        title: opt.title || 'Great!',
+        text: opt.text || 'Done',
+        type: 'success',
+        confirmButtonText: opt.confirmButtonText || 'ok'
+      }).then(callback)
+    }
+  }
+})
+
 // Vue config
 Vue.config.productionTip = false
 

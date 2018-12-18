@@ -31,7 +31,7 @@ surveys.route('/')
     res.status(405).json({ 'error': { 'message': 'Not Allowed! Patch to URL without id', 'code': 405 } })
   })
   .delete((req, res, next) => {
-    res.status(405).json({ 'error': { 'message': 'Not Allowed! Delete to URL without id', 'code': 400 } })
+    res.status(405).json({ 'error': { 'message': 'Not Allowed! Delete to URL without id', 'code': 405 } })
   })
 
 surveys.route('/:id')
@@ -40,13 +40,13 @@ surveys.route('/:id')
       if (!err) res.status(200).json(item)
       else {
         err.status = 404
-        err.message = 'Could not find by ID'
+        err.message = `Could not find by this id: ${req.params.id}`
         next(err)
       }
     })
   })
   .post((req, res, next) => {
-    res.status(405).json({ 'error': { 'message': 'Post to wrong URL with ID', 'code': 405 } })
+    res.status(405).json({ 'error': { 'message': 'Not Allowed! Post to URL with id', 'code': 405 } })
   })
   .delete((req, res, next) => {
     res.set('Content-Type', 'application/json')
@@ -54,14 +54,14 @@ surveys.route('/:id')
       if (!err) res.status(204).end()
       else {
         err.status = 404
-        err.message = 'Could not find and delete by this ID'
+        err.message = `Could not find and delete by this id: ${req.params.id}`
         next(err)
       }
     })
   })
   .put((req, res, next) => {
     let err = {}
-    if (req.params.id !== req.body.id) {
+    if (req.params.id !== req.body._id) {
       err = {
         'status': 400,
         'message': 'Request id is not equal to object id'
@@ -97,8 +97,7 @@ surveys.route('/:id')
   })
   .patch((req, res, next) => {
     res.set('Content-Type', 'application/json')
-
-    if (req.params.id === req.body._id) {
+    if (req.params.id !== req.body._id) {
       const err = {
         'status': 400,
         'message': 'Request ID is not equal to object ID'
@@ -107,7 +106,7 @@ surveys.route('/:id')
     } else {
       if (req.body.__v !== undefined) delete req.body.__v
       if (req.body._id !== undefined) delete req.body._id
-      SurveyModel.findOneAndUpdate({ _id: req.params.id }, req.body, { upsert: true, new: true }, (err, item) => {
+      SurveyModel.findByIdAndUpdate(req.params.id, req.body, { upsert: true, new: true }, (err, item) => {
         if (!err) res.status(200).json(item)
         else {
           err.status = 404
