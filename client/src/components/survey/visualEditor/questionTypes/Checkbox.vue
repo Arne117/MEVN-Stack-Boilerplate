@@ -18,4 +18,5 @@ export default {
 </script>
 
 <style lang='stylus' scoped>
+.Checkbox {}
 </style>

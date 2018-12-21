@@ -5,14 +5,6 @@
         ul.Header-list
           li.py-2
             router-link.Header-item( :to="{ name: 'Home', params: {} }" tag='a' active-class='active' exact) Home
-          //- li.py-2
-          //-   router-link.Header-item( :to="{ name: 'Home', params: {}, hash: '#data' }" tag='a' active-class='active' exact) Scroll to #data
-          li.py-2
-            router-link.Header-item( :to="{ name: 'Posts' }" tag='a' active-class='active') Post
-          li.py-2
-            router-link.Header-item( :to="{ name: 'VuexComponent' }" tag='a' active-class='active') Vuex
-          li.py-2
-            router-link.Header-item( :to="{ name: 'Hue' }" tag='a' active-class='active') Hue
           li.py-2
             router-link.Header-item( :to="{ name: 'ListSurveys' }" tag='a' active-class='active') Survey
 </template>

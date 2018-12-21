@@ -34,17 +34,13 @@
               li.Question-item(
                 v-for='question, j in page.elements' :key='question.name'
                 :class='activeQuestion.name === question.name ? "active" : ""'
-                @click.self='setQuestionActive(question, $event)'
+                @click='setQuestionActive(question, $event)'
                 ) {{ question.title[surveyData.locale] }}
                 .QuestionDetails
                   .QuestionDetails-container
-                    .QuestionDetails-header {{ question.type }}
+                    .QuestionDetails-header
                     .QuestionDetails-body
                       component(:is='question.type' v-bind='{ question: question, language: surveyData.locale }')
-
-            //- draggable(element='span' v-model='list2' :options='dragOptions' :move='onMove')
-            //-   transition-group(name='no' class='list-group' tag='ul')
-            //-     li(class='list-group-item' v-for='element in list2' :key='element.order') {{element.name}}
           .Page-footer
     //- Sidebar
     .Sidebar
@@ -191,7 +187,7 @@ export default {
 }
 </script>
 
-<style lang='stylus'>
+<style lang='stylus' scoped>
 .VisualEditor {
   display flex
   flex-direction row

@@ -2,9 +2,7 @@
   .QuestionType.Rating
     .QuestionType-container
       .Rating-list
-        .Rating-option(v-for='n in question.rateMax')
-          label(for='') {{ n }}
-          input(type='radio' disabled)
+        label.Rating-option(v-for='n in question.rateMax') {{ n }}
 </template>
 
 <script>
@@ -18,4 +16,24 @@ export default {
 </script>
 
 <style lang='stylus' scoped>
+.Rating {
+  &-list {
+    display flex
+    flex-direction row
+    flex-wrap wrap
+    margin .5em 0
+  }
+
+  &-option {
+    padding .25em .4em
+    margin 0
+
+    border 1px solid $darkBlue
+    border-right none
+
+    &:last-child {
+      border-right 1px solid $darkBlue
+    }
+  }
+}
 </style>
