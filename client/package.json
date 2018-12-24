@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
-    "survey-vue": "^1.0.56",
+    "bson": "^4.0.1",
     "vue": "^2.4.2",
     "vue-draggable-resizable": "^1.7.5",
     "vue-json-tree-view": "^2.1.4",

@@ -32,13 +32,16 @@
               @end='isDragging=false'
             )
               li.Question-item(
-                v-for='question, j in page.elements' :key='question.name'
+                v-for='question, j in page.elements'
+                :key='question.name'
                 :class='activeQuestion.name === question.name ? "active" : ""'
                 @click='setQuestionActive(question, $event)'
-                ) {{ question.title[surveyData.locale] }}
+                )
                 .QuestionDetails
                   .QuestionDetails-container
                     .QuestionDetails-header
+                      span.QuestionDetails-title {{ question.title[surveyData.locale] }}
+                      i.QuestionDetails-handle.fa.fa-bars(aria-hidden='true')
                     .QuestionDetails-body
                       component(:is='question.type' v-bind='{ question: question, language: surveyData.locale }')
           .Page-footer
@@ -66,13 +69,14 @@
             h6 Questiontypes
             draggable.Question-list(
               element='ul'
-              v-model='Survey.ElementFactory.Instance.getAllTypes()'
-              :options='{group:{ pull:"clone", put:false }, sort: false}'
+              v-model='defaultQuestionValueList'
+              :options='dragOptionsSidebar'
               :move='onQuestionMove'
-              @start='isDragging=true'
-              @end='isDragging=false'
             )
-              li.Sidebar-question.Question-item(v-for='question, i in Survey.ElementFactory.Instance.getAllTypes()' :key='question') {{ question }}
+              li.Sidebar-question.Question-item(
+                v-for='question, i in defaultQuestionValueList'
+                :key='question.name'
+              ) {{ question.type }}
         .Sidebar-general(v-show='sidebarContent === "general"')
           .Sidebar-header
             h5 Settings
@@ -84,23 +88,18 @@
 </template>
 
 <script>
-import * as SurveyVue from 'survey-vue'
 import draggable from 'vuedraggable'
 import { mapMutations } from 'vuex'
 
 import SurveyService from '@/services/SurveyService'
 
+import defaultQuestionValueList from './questionTypes/defaultQuestionValueList'
 import checkbox from './questionTypes/Checkbox'
 import rating from './questionTypes/Rating'
-
-window.Survey = SurveyVue
-let Survey = SurveyVue.Survey
-Survey.cssType = 'bootstrap'
 
 export default {
   name: 'visualEditor',
   components: {
-    SurveyVue,
     draggable,
     checkbox,
     rating
@@ -111,9 +110,19 @@ export default {
       activeQuestion: {},
       sidebarContent: 'general',
       surveyData: undefined,
-      Survey: SurveyVue,
+      defaultQuestionValueList,
       dragOptions: {
-        ghostClass: 'Question-item--moving'
+        group: 'questions',
+        ghostClass: 'Question-item--moving',
+        handle: '.QuestionDetails-handle'
+      },
+      dragOptionsSidebar: {
+        group: {
+          name: 'questions',
+          pull: 'clone',
+          put: false
+        },
+        sort: false
       }
     }
   },
@@ -150,11 +159,13 @@ export default {
       this.surveyData.pages[this.activePage].position.x = x
       this.surveyData.pages[this.activePage].position.y = y
     },
-    onQuestionMove () {},
+    onQuestionMove (evt, originalEvent) {
+      console.log(evt, originalEvent)
+    },
     setPageActive (activePage, $event) {
       console.log('setPageActive')
       this.activePage = activePage
-      if ($event.target.classList.contains('Question-item')) this.sidebarContent = 'questionDetails'
+      if ($event.path.some(e => e.classList ? e.classList.contains('Question-item') : null)) this.sidebarContent = 'questionDetails'
       else {
         this.activeQuestion = {}
         this.sidebarContent = 'questions'
@@ -166,7 +177,7 @@ export default {
       this.activePage = undefined
       this.activeQuestion = {}
     },
-    setQuestionActive (activeQuestion, $event) {
+    setQuestionActive (activeQuestion) {
       console.log('setQuestionActive')
       this.activeQuestion = activeQuestion
       this.sidebarContent = 'questionDetails'
@@ -246,6 +257,10 @@ export default {
       margin-top .5em
       display flex
       flex-direction column
+      min-height 5em
+
+      border 2px dashed $lightGrey
+      border-radius 10px
     }
 
     &-item {
@@ -257,10 +272,14 @@ export default {
       border-radius 10px
       cursor pointer
 
+      &:first-child {
+        margin-top .5em
+      }
+
       &.active {
         border 1px solid $darkBlue
 
-        .QuestionDetails {
+        .QuestionDetails-body {
           display flex
         }
       }
@@ -274,11 +293,16 @@ export default {
   }
 
   .QuestionDetails {
-    display none
 
     &-container {}
-    &-header {}
-    &-body {}
+    &-header {
+      display flex
+      justify-content space-between
+    }
+
+    &-body {
+      display none
+    }
   }
 
   .Sidebar {
