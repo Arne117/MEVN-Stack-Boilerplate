@@ -3,11 +3,17 @@
     .QuestionType-container
       .Rating-list
         label.Rating-option(v-for='n in question.rateMax') {{ n }}
+        //- StartNode()
 </template>
 
 <script>
+import StartNode from './StartNode'
+
 export default {
   name: 'QuestionType-Rating',
+  components: {
+    StartNode
+  },
   props: {
     question: Object,
     language: String

@@ -2,7 +2,7 @@ import { ObjectID } from 'bson'
 
 export default [
   {
-    questionsID: new ObjectID(),
+    questionsID: new ObjectID().toString(),
     type: 'text',
     name: 'text',
     title: {
@@ -11,7 +11,7 @@ export default [
     isRequired: true
   },
   {
-    questionsID: new ObjectID(),
+    questionsID: new ObjectID().toString(),
     type: 'checkbox',
     name: 'checkbox',
     title: {
@@ -20,14 +20,14 @@ export default [
     isRequired: true,
     choices: [
       {
-        answerID: new ObjectID(),
+        answerID: new ObjectID().toString(),
         value: 'item1',
         text: {
           de: 'item1'
         }
       },
       {
-        answerID: new ObjectID(),
+        answerID: new ObjectID().toString(),
         value: 'item2',
         text: {
           de: 'item2'
@@ -36,7 +36,7 @@ export default [
     ]
   },
   {
-    questionsID: new ObjectID(),
+    questionsID: new ObjectID().toString(),
     type: 'radiogroup',
     name: 'radiogroup',
     title: {
@@ -45,14 +45,14 @@ export default [
     isRequired: true,
     choices: [
       {
-        answerID: new ObjectID(),
+        answerID: new ObjectID().toString(),
         value: 'item1',
         text: {
           de: 'item1'
         }
       },
       {
-        answerID: new ObjectID(),
+        answerID: new ObjectID().toString(),
         value: 'item2',
         text: {
           de: 'item2'
@@ -61,7 +61,7 @@ export default [
     ]
   },
   {
-    questionsID: new ObjectID(),
+    questionsID: new ObjectID().toString(),
     type: 'dropdown',
     name: 'dropdown',
     title: {
@@ -70,14 +70,14 @@ export default [
     isRequired: true,
     choices: [
       {
-        answerID: new ObjectID(),
+        answerID: new ObjectID().toString(),
         value: 'item1',
         text: {
           de: 'item1'
         }
       },
       {
-        answerID: new ObjectID(),
+        answerID: new ObjectID().toString(),
         value: 'item2',
         text: {
           de: 'item2'
@@ -86,7 +86,7 @@ export default [
     ]
   },
   {
-    questionsID: new ObjectID(),
+    questionsID: new ObjectID().toString(),
     type: 'comment',
     name: 'comment',
     title: {
@@ -95,7 +95,7 @@ export default [
     isRequired: true
   },
   {
-    questionsID: new ObjectID(),
+    questionsID: new ObjectID().toString(),
     type: 'rating',
     name: 'rating',
     title: {
@@ -105,7 +105,7 @@ export default [
     isRequired: true
   },
   {
-    questionsID: new ObjectID(),
+    questionsID: new ObjectID().toString(),
     type: 'imagepicker',
     name: 'imagepicker',
     title: {
@@ -116,27 +116,27 @@ export default [
       {
         value: 'lion',
         imageLink: 'https://surveyjs.io/Content/Images/examples/image-picker/lion.jpg',
-        answerID: new ObjectID()
+        answerID: new ObjectID().toString()
       },
       {
         value: 'giraffe',
         imageLink: 'https://surveyjs.io/Content/Images/examples/image-picker/giraffe.jpg',
-        answerID: new ObjectID()
+        answerID: new ObjectID().toString()
       },
       {
         value: 'panda',
         imageLink: 'https://surveyjs.io/Content/Images/examples/image-picker/panda.jpg',
-        answerID: new ObjectID()
+        answerID: new ObjectID().toString()
       },
       {
         value: 'camel',
         imageLink: 'https://surveyjs.io/Content/Images/examples/image-picker/camel.jpg',
-        answerID: new ObjectID()
+        answerID: new ObjectID().toString()
       }
     ]
   },
   {
-    questionsID: new ObjectID(),
+    questionsID: new ObjectID().toString(),
     type: 'matrix',
     name: 'matrix',
     title: {
@@ -154,7 +154,7 @@ export default [
     ]
   },
   {
-    questionsID: new ObjectID(),
+    questionsID: new ObjectID().toString(),
     type: 'multipletext',
     name: 'multipletext',
     title: {
@@ -164,11 +164,11 @@ export default [
     items: [
       {
         name: 'text1',
-        answerID: new ObjectID()
+        answerID: new ObjectID().toString()
       },
       {
         name: 'text2',
-        answerID: new ObjectID()
+        answerID: new ObjectID().toString()
       }
     ]
   }

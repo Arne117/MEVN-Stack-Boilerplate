@@ -23,7 +23,8 @@ const SurveySchema = new Schema(
       default: [{
         name: 'Page 1',
         title: 'Titel der ersten Seite',
-        position: { x: 25, y: 25 }
+        position: { x: 25, y: 25 },
+        elements: []
       }]
     }
   },

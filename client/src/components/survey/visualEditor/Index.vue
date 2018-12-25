@@ -33,8 +33,8 @@
             )
               li.Question-item(
                 v-for='question, j in page.elements'
-                :key='question.name'
-                :class='activeQuestion.name === question.name ? "active" : ""'
+                :key='question.questionsID'
+                :class='activeQuestion.questionsID === question.questionsID ? "active" : ""'
                 @click='setQuestionActive(question, $event)'
                 )
                 .QuestionDetails
@@ -72,6 +72,7 @@
               v-model='defaultQuestionValueList'
               :options='dragOptionsSidebar'
               :move='onQuestionMove'
+              :clone='onQuestionClone'
             )
               li.Sidebar-question.Question-item(
                 v-for='question, i in defaultQuestionValueList'
@@ -90,6 +91,7 @@
 <script>
 import draggable from 'vuedraggable'
 import { mapMutations } from 'vuex'
+import { ObjectID } from 'bson'
 
 import SurveyService from '@/services/SurveyService'
 
@@ -161,6 +163,12 @@ export default {
     },
     onQuestionMove (evt, originalEvent) {
       // console.log(evt, originalEvent)
+    },
+    onQuestionClone (el) {
+      let cloned = {...el}
+      cloned.questionsID = new ObjectID().toString()
+      cloned.choices.map(el => { el.answerID = new ObjectID().toString() })
+      return cloned
     },
     setPageActive (activePage, $event) {
       console.log('setPageActive')
@@ -242,6 +250,10 @@ export default {
 
           cursor grab
         }
+      }
+
+      &-body {
+        overflow scroll
       }
 
       &.dragging {
