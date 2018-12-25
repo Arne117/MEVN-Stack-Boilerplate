@@ -160,7 +160,7 @@ export default {
       this.surveyData.pages[this.activePage].position.y = y
     },
     onQuestionMove (evt, originalEvent) {
-      console.log(evt, originalEvent)
+      // console.log(evt, originalEvent)
     },
     setPageActive (activePage, $event) {
       console.log('setPageActive')
@@ -319,8 +319,10 @@ export default {
       margin 1em 0
 
       label, input {
-        text-align left
+        margin 0
         width 100%
+
+        text-align left
       }
     }
   }

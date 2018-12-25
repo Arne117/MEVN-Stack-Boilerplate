@@ -4,7 +4,8 @@ import actions from './actions'
 
 const state = {
   survey: {},
-  changed: false
+  changed: false,
+  activeStartNode: ''
 }
 
 export default {
