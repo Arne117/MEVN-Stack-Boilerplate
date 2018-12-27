@@ -8,10 +8,14 @@
 
 const mongoose = require('mongoose')
 mongoose.Promise = global.Promise
-const db = mongoose.createConnection(
-  `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}:${process.env.DB_PORT}/Bachelorarbeit?authSource=admin`,
-  { useNewUrlParser: true }
-)
+
+let connectionString = `mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/Bachelorarbeit`
+
+if (process.env.DB_USER && process.env.DB_PASS) {
+  connectionString = `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}:${process.env.DB_PORT}/Bachelorarbeit?authSource=admin`
+}
+
+const db = mongoose.createConnection(connectionString, { useNewUrlParser: true })
 const Schema = mongoose.Schema
 
 const SurveySchema = new Schema(

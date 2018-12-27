@@ -37,6 +37,12 @@
                 :class='activeQuestion.questionsID === question.questionsID ? "active" : ""'
                 @click='setQuestionActive(question, $event)'
                 )
+                .EndNode(
+                  v-show='activeStartNode || question.connectedToQuestion'
+                  @click='connectQuestions(question)'
+                  :class='question.connectedToQuestion ? "connected" : "" '
+                  :data-questionsID='question.questionsID'
+                  )
                 .QuestionDetails
                   .QuestionDetails-container
                     .QuestionDetails-header
@@ -106,6 +112,12 @@ export default {
     checkbox,
     rating
   },
+  computed: {
+    activeStartNode: {
+      set (obj) { this.$store.commit('setActiveStartNode', obj) },
+      get () { return this.$store.getters.getActiveStartNode }
+    }
+  },
   data () {
     return {
       activePage: undefined,
@@ -140,6 +152,18 @@ export default {
         elements: []
       })
     },
+    connectQuestions (question) {
+      if (this.activeStartNode) {
+        console.log('connectQuestions')
+        console.log(`CONNECT Answer: ${this.activeStartNode.answerID} TO Question: ${question.questionsID}`)
+        if (typeof question.connectedToQuestion !== Array) question.connectedToQuestion = [this.activeStartNode.answerID]
+        else question.connectedToQuestion.push(this.activeStartNode.answerID)
+        console.log(question)
+        console.log(this.activeStartNode)
+        this.activeStartNode.leadsToQuestion = question.questionsID
+        // this.activeStartNode = undefined
+      }
+    },
     async getSurvey () {
       const response = await SurveyService.getSurvey({
         id: this.$route.params.id
@@ -155,7 +179,7 @@ export default {
       if (length % 3 === 2) return { x: 725, y }
     },
     onPageDragActivate (activePage) { this.activePage = activePage },
-    onPageDragDeactivate () { this.activePage = undefined },
+    onPageDragDeactivate () {},
     onPageDrag (x, y) { /* collision handler */ },
     onPageDragStop (x, y) {
       this.surveyData.pages[this.activePage].position.x = x
@@ -171,7 +195,7 @@ export default {
       return cloned
     },
     setPageActive (activePage, $event) {
-      console.log('setPageActive')
+      // console.log('setPageActive')
       this.activePage = activePage
       if ($event.path.some(e => e.classList ? e.classList.contains('Question-item') : null)) this.sidebarContent = 'questionDetails'
       else {
@@ -180,13 +204,13 @@ export default {
       }
     },
     setEditAreaActive ($event) {
-      console.log('setEditAreaActive')
+      // console.log('setEditAreaActive')
       this.sidebarContent = 'general'
       this.activePage = undefined
       this.activeQuestion = {}
     },
     setQuestionActive (activeQuestion) {
-      console.log('setQuestionActive')
+      // console.log('setQuestionActive')
       this.activeQuestion = activeQuestion
       this.sidebarContent = 'questionDetails'
     }
@@ -197,7 +221,7 @@ export default {
   watch: {
     surveyData: {
       handler (now, before) {
-        // console.log('survey changed')
+        console.log('survey changed')
         this.setSurvey(this.surveyData)
       },
       deep: true
@@ -276,6 +300,7 @@ export default {
     }
 
     &-item {
+      position relative
       padding .5em
       margin-bottom .5em
 
@@ -300,6 +325,22 @@ export default {
         opacity 0.5
         background $lightGrey
         cursor grabbing
+      }
+
+      .EndNode {
+        position absolute
+        left -8px
+        top -7px
+        width 15px
+        height 15px
+
+        border-radius 50%
+        border 5px solid $orange
+
+
+        &.connected {
+          border 5px solid $green
+        }
       }
     }
   }

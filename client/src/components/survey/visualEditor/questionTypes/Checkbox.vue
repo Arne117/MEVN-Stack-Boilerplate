@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import StartNode from './StartNode'
+import StartNode from './helpers/StartNode'
 
 export default {
   name: 'QuestionType-Checkbox',

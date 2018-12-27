@@ -1,7 +1,7 @@
 <template lang='pug'>
   .StartNode(
-    @click='activeStartNode = option.answerID'
-    :class='activeStartNode ===  option.answerID ? "active" : "" '
+    @click='activeStartNode = option'
+    :class='[activeStartNode ? activeStartNode.answerID ===  option.answerID ? "active" : "" : "", option.leadsToQuestion ? "connected" : "" ]'
     :data-answerID='option.answerID'
     )
     .StartNode-inner
@@ -11,7 +11,7 @@
 export default {
   computed: {
     activeStartNode: {
-      set (id) { this.$store.commit('setActiveStartNode', id) },
+      set (obj) { this.$store.commit('setActiveStartNode', obj) },
       get () { return this.$store.getters.getActiveStartNode }
     }
   },
@@ -34,6 +34,13 @@ export default {
     border 1px solid $orange
     .StartNode-inner {
       border 1px solid $orange
+    }
+  }
+
+  &.connected {
+    border 1px solid $green
+    .StartNode-inner {
+      border 1px solid $green
     }
   }
 
