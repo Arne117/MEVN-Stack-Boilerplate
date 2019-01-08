@@ -191,7 +191,9 @@ export default {
     onQuestionClone (el) {
       let cloned = {...el}
       cloned.questionsID = new ObjectID().toString()
-      cloned.choices.map(el => { el.answerID = new ObjectID().toString() })
+      cloned.choices.map(choice => { choice.answerID = new ObjectID().toString() })
+      // console.log(cloned.choices.map(choice => choice.answerID = new ObjectID().toString()))
+      console.log(cloned)
       return cloned
     },
     setPageActive (activePage, $event) {

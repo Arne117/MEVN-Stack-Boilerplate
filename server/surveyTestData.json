@@ -9,6 +9,220 @@
       "y": 37.5
     },
     "elements": [{
+      "questionsID": "5c227ff6d6dd02014488e414",
+      "type": "checkbox",
+      "name": "checkbox",
+      "title": {
+        "de": "Datenübertragung"
+      },
+      "isRequired": true,
+      "choices": [{
+        "answerID": "5c227ff6d6dd02014488e415",
+        "value": "item1",
+        "text": {
+          "de": "item1"
+        }
+      }, {
+        "answerID": "5c227ff6d6dd02014488e416",
+        "value": "item2",
+        "text": {
+          "de": "item2"
+        }
+      }]
+    }, {
+      "questionsID": "5c227ff6d6dd02014488e683",
+      "type": "text",
+      "name": "question2",
+      "title": {
+        "de": "Geben sie ihren Namen ein"
+      }
+    }, {
+      "type": "rating",
+      "name": "NPS Frage",
+      "title": {
+        "de": "Wie sehr würden Sie uns empfehlen?"
+      },
+      "isRequired": true,
+      "rateMax": 10,
+      "minRateDescription": {
+        "de": "Gar nicht"
+      },
+      "maxRateDescription": {
+        "de": "Sehr"
+      }
+    }]
+  }, {
+    "name": "Seite 2",
+    "title": "Seite 2",
+    "position": {
+      "x": 387.5,
+      "y": 37.5
+    },
+    "elements": [{
+      "questionsID": "5c2101d53804081bf11ba961",
+      "type": "rating",
+      "name": "rating",
+      "title": {
+        "de": "Bitte geben sie ihr Alter an"
+      },
+      "rateMax": 7,
+      "isRequired": false
+    }, {
+      "questionsID": "5c3128e02ec6f88b31d126e6",
+      "type": "checkbox",
+      "name": "checkbox",
+      "title": {
+        "de": "Woher kennen Sie uns?"
+      },
+      "isRequired": true,
+      "choices": [{
+        "answerID": "5c3128e02ec6f88b31d126e7",
+        "value": "item1",
+        "text": {
+          "de": "item1"
+        }
+      }, {
+        "answerID": "5c3128e02ec6f88b31d126e8",
+        "value": "item2",
+        "text": {
+          "de": "item2"
+        }
+      }]
+    }, {
+      "questionsID": "5c3128e32ec6f88b31d126e9",
+      "type": "checkbox",
+      "name": "checkbox",
+      "title": {
+        "de": "Sind Sie schon unser Kunde?"
+      },
+      "isRequired": true,
+      "choices": [{
+        "answerID": "5c3128e32ec6f88b31d126ea",
+        "value": "item1",
+        "text": {
+          "de": "item1"
+        }
+      }, {
+        "answerID": "5c3128e32ec6f88b31d126eb",
+        "value": "item2",
+        "text": {
+          "de": "item2"
+        }
+      }]
+    }]
+  }, {
+    "name": "Seite 3",
+    "title": "Seite 3",
+    "position": {
+      "x": 737.5,
+      "y": 37.5
+    },
+    "elements": [{
+      "questionsID": "5c2100a01891403fdb5baacc",
+      "type": "checkbox",
+      "name": "checkbox",
+      "title": {
+        "de": "Testfrage"
+      },
+      "isRequired": true,
+      "choices": [{
+        "answerID": "5c2100a01891403fdb5baacd",
+        "value": "item1",
+        "text": {
+          "de": "item1"
+        }
+      }, {
+        "answerID": "5c2100a01891403fdb5baace",
+        "value": "item2",
+        "text": {
+          "de": "item2"
+        }
+      }]
+    }, {
+      "questionsID": "5c3129c62ec6f88b31d126ef",
+      "type": "checkbox",
+      "name": "checkbox",
+      "title": {
+        "de": "Ihre Frage hier:"
+      },
+      "isRequired": true,
+      "choices": [{
+        "answerID": "5c3129c62ec6f88b31d126f0",
+        "value": "item1",
+        "text": {
+          "de": "item1"
+        }
+      }, {
+        "answerID": "5c3129c62ec6f88b31d126f1",
+        "value": "item2",
+        "text": {
+          "de": "item2"
+        }
+      }]
+    }]
+  }, {
+    "title": "Seite 4 Titel",
+    "name": "Seite 4",
+    "position": {
+      "x": 37.5,
+      "y": 475
+    },
+    "elements": [{
+      "questionsID": "5c0664b6cb4344e3e664a939",
+      "type": "checkbox",
+      "name": "Frage zur Wahl",
+      "title": {
+        "de": "Welche Partei würden sie wählen"
+      },
+      "isRequired": true,
+      "choices": [{
+        "answerID": "5c0664b6d251ea812b6052a6",
+        "value": "item1",
+        "text": {
+          "de": "SPD"
+        }
+      }, {
+        "answerID": "5c0664b6e9b01e04682d7643",
+        "value": "item2",
+        "text": {
+          "de": "CDU"
+        }
+      }]
+    }, {
+      "questionsID": "5c312a086464dd8ecf8a5b72",
+      "type": "checkbox",
+      "name": "checkbox",
+      "title": {
+        "de": "Erzählen Sie uns warum"
+      },
+      "isRequired": true,
+      "choices": [{
+        "answerID": "5c312a086464dd8ecf8a5b73",
+        "value": "item1",
+        "text": {
+          "de": "item1"
+        }
+      }, {
+        "answerID": "5c312a086464dd8ecf8a5b74",
+        "value": "item2",
+        "text": {
+          "de": "item2"
+        }
+      }]
+    }]
+  }]
+},
+{
+  "locale": "de",
+  "title": "Titel der zweiten Umfrage.",
+  "pages": [{
+    "name": "Seite 1",
+    "title": "Titel der Seite 1",
+    "position": {
+      "x": 37.5,
+      "y": 37.5
+    },
+    "elements": [{
       "questionsID": "5c227ff6d6dd02014488e683",
       "type": "text",
       "name": "question2",
@@ -23,7 +237,7 @@
         "de": "Ihre Frage hier:"
       },
       "isRequired": true,
-      "connectedToQuestion": [],
+      "connectedToAnswer": [],
       "choices": [{
         "answerID": "5c227ff6d6dd02014488e415",
         "value": "item1",

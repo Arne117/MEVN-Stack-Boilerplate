@@ -1,21 +1,21 @@
 <template lang='pug'>
   .p-lg-1
     h3 List of surveys
-    router-link.Button(:to='{ name: "CreateSurvey" }' tag='button')
-      span Create survey
-    ul.SurveyList
+    ul.SurveyList.m-md-3
         li.SurveyList-item(
           v-if='surveys.length > 0'
           v-for='survey, i in surveys'
           @click=''
           )
-          | {{ survey.title }}
+          span.SurveyList-itemTitle {{ survey.title }}
           router-link.SurveyList-link(:to='{ name: "EvaluateSurvey", params: {id: survey._id} }' tag='a')
             span Evaluate
           router-link.SurveyList-link(:to='{ name: "EditSurvey", params: {id: survey._id} }' tag='a')
             span Edit
           a.SurveyList-link(@click='deleteSurvey(survey._id)') Delete
         .Error(v-else) There was an Error
+    router-link.Button(:to='{ name: "CreateSurvey" }' tag='button')
+      span Create new survey
 </template>
 
 <script>
@@ -75,6 +75,10 @@ export default {
     &-item {
       margin .5em 1em
       padding 0 .5em
+
+      &Title {
+        margin-right 5em
+      }
     }
 
     &-link {
