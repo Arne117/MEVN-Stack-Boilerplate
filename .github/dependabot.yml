@@ -1,0 +1,21 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/client"
+  schedule:
+    interval: daily
+    time: "04:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: karma
+    versions:
+    - 6.0.3
+    - 6.1.0
+    - 6.1.1
+    - 6.2.0
+  - dependency-name: ora
+    versions:
+    - 5.3.0
+  - dependency-name: http-proxy-middleware
+    versions:
+    - 1.0.6
